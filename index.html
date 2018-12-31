@@ -29,5 +29,8 @@
         $("#type").val("");
         socket.send(Value);
     }
+    $("#type").onkeyup(function (key) {
+        if (key.keyCode === 13) submit();
+    });
 </script>
 </html>
