@@ -21,7 +21,11 @@ wss.on('connection', function (ws) {
     ws.on('message', function (message) {
         console.log(message);
         for(var i=0;i<conns.length;i++) {
-            conns[i].send(message);
+            try {
+                conns[i].send(message);
+            } catch (e) {
+                
+            }
         }
     });
 });
