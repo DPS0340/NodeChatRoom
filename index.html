@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DPSChat</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="box" style="overflow-y: scroll; height:400px;">
+</div>
+<div> <input type="text" id="type"><button id="submit" onclick="submit();">Enter</button></div>
+</body>
+<script>
+    $("#box").append("Welcome to DPSChat!<br>");
+    var socket = new WebSocket('ws://localhost:8080');
+    socket.onopen = function (event) {
+        $("#box").append("Connection Succeed!<br>");
+    };
+    socket.onmessage = function (event) {
+        console.log(event.data);
+        $("#box").append(event.data + "<br>");
+    };
+    function submit() {
+        var Value = $("#type").val();
+        $("#type").val("");
+        socket.send(Value);
+    }
+</script>
+</html>
