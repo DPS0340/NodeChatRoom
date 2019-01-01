@@ -14,7 +14,7 @@
 <body>
 <div id="box" style="overflow-y: scroll; height:400px;">
 </div>
-<div> <input type="text" id="type" style="width: 250px" onkeyup="presskey();"><button class="btn btn-light" id="submit" onclick="submit();">Enter</button></div>
+<div> <input type="text" id="type" style="width: 250px" onkeyup="enter();"><button class="btn btn-light" id="submit" onclick="submit();">Enter</button></div>
 <script>
     $("#box").append("Welcome to DPSChat!<br>");
     var socket = new WebSocket('ws://localhost:8080');
@@ -30,8 +30,8 @@
         $("#type").val("");
         socket.send(Value);
     }
-    function presskey() {
-        if (window.event.keyCode == 13) submit();
+    function enter() {
+        if (event.keyCode == 13) submit();
     }
 </script>
 </body>
