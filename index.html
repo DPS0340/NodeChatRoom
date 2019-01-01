@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>DPSChat</title>
-    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="index.css" type="text/css">
 </head>
 <body>
 <div id="box" style="overflow-y: scroll; height:400px;">
 </div>
-<div> <input type="text" id="type"><button id="submit" onclick="submit();">Enter</button></div>
-</body>
+<div> <input type="text" id="type" style="width: 250px" onkeyup="presskey();"><button class="btn btn-light" id="submit" onclick="submit();">Enter</button></div>
 <script>
     $("#box").append("Welcome to DPSChat!<br>");
     var socket = new WebSocket('ws://localhost:8080');
@@ -29,8 +31,9 @@
         $("#type").val("");
         socket.send(Value);
     }
-    $("#type").onkeyup(function (key) {
-        if (key.keyCode === 13) submit();
-    });
+    function presskey() {
+        if (window.event.keyCode == 13) submit();
+    }
 </script>
+</body>
 </html>
